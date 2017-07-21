@@ -95,16 +95,10 @@ public class ChannelsItemView extends RelativeLayout {
     public void setItem(Channel item) {
         if (item != null) {
             setUserName("" + item.getLastMessage().getSender().getFirstName() + " " + item.getLastMessage().getSender().getLastName());
+            setLastMessage("" + item.getLastMessage().getText());
+            setTimeOfMessage("" + item.getLastMessage().getCreateDate());
+            setNumberUnread(item.getUnreadMessagesCount());
+            setUserImage(item.getLastMessage().getSender().getPhoto());
         }
-        setLastMessage("" + item.getLastMessage().getText());
-        String format = "EEE, dd MMM yyyy HH:mm:ss z";
-        SimpleDateFormat sdf = new SimpleDateFormat(format, Locale.US);
-        try {
-            Date result = sdf.parse(item.getLastMessage().getCreateDate());
-            setTimeOfMessage("" + result);
-        } catch (ParseException ex) {
-            Log.d(TAG, ex.getLocalizedMessage());
-        }
-        setNumberUnread(item.getUnreadMessagesCount());
     }
 }

@@ -1,13 +1,17 @@
 package com.example.who.chatdb2.presenters;
 
+
 import android.content.Context;
 import android.util.Log;
 
+import com.example.who.chatdb2.callback.ChatService;
 import com.example.who.chatdb2.controller.RestManager;
 import com.example.who.chatdb2.interfaces.IChannelsView;
 import com.example.who.chatdb2.pojo.Channel;
+import com.example.who.chatdb2.pojo.Channels;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import retrofit2.Call;
@@ -37,18 +41,23 @@ public class ChannelActivityPresenter {
     }
 
     private void initList() {
-        Call<List<Channel>> listCall = mManager.getChatService().getChannels();
-        listCall.enqueue(new Callback<List<Channel>>() {
+        HashMap<String, String> headers = new HashMap<>();
+        headers.put("iostest", "iostest2k17!");
+        Call<Channels> listCall = RestManager.createService(headers).getChannels("Basic aW9zdGVzdDppb3N0ZXN0MmsxNyE=");
+        listCall.enqueue(new Callback<Channels>() {
             @Override
-            public void onResponse(Call<List<Channel>> call, Response<List<Channel>> response) {
-                data = response.body();
+            public void onResponse(Call<Channels> call, Response<Channels> response) {
+                data = response.body().getChannels();
+                view.setDataToAdapter(data);
             }
 
             @Override
-            public void onFailure(Call<List<Channel>> call, Throwable t) {
+            public void onFailure(Call<Channels> call, Throwable t) {
                 Log.e(TAG, t.getLocalizedMessage());
             }
         });
+
+
 //        data.add(0, new DayOfWeekModel(MONDAY));
 //        data.add(1, new DayOfWeekModel(TUESDAY));
 //        data.add(2, new DayOfWeekModel(WEDNESDAY));
@@ -56,6 +65,7 @@ public class ChannelActivityPresenter {
 //        data.add(4, new DayOfWeekModel(FRIDAY));
 //        data.add(5, new DayOfWeekModel(SATURDAY));
 //        data.add(6, new DayOfWeekModel(SUNDAY));
-        view.setDataToAdapter(data);
+
     }
+
 }
