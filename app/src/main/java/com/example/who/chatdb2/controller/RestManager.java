@@ -15,12 +15,7 @@ import javax.net.ssl.SSLSession;
 import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
-
-import okhttp3.HttpUrl;
-import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -29,8 +24,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class RestManager {
-    
-public static String PREF_COOKIES = "pref_cookies";
+
+    public static String PREF_COOKIES = "pref_cookies";
 
     private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 
