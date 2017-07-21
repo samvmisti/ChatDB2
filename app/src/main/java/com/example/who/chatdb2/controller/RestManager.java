@@ -1,7 +1,10 @@
 package com.example.who.chatdb2.controller;
 
+
 import com.example.who.chatdb2.callback.ChatService;
 
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -13,10 +16,14 @@ public class RestManager {
 
     ChatService mChatService;
 
+
+    OkHttpClient client = new OkHttpClient.Builder().addInterceptor(getClient()).build();
+
     public ChatService getChatService() {
         if (mChatService == null) {
             Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl("https://iostest.db2dev.com/")
+                    .baseUrl("http://iostest.db2dev.com/")
+                    .client(client)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
 
@@ -25,4 +32,11 @@ public class RestManager {
 
         return mChatService;
     }
+
+    private HttpLoggingInterceptor getClient() {
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        return interceptor;
+    }
+
 }

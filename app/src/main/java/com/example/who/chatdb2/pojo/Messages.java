@@ -10,7 +10,7 @@ import java.util.List;
  * Created by who on 21.07.2017.
  */
 
-public class Massages {
+public class Messages {
     @SerializedName("messages")
     @Expose
     private List<Message> messages = null;
