@@ -25,6 +25,7 @@ import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by who on 21.07.2017.
@@ -39,9 +40,9 @@ public class ChannelsItemView extends RelativeLayout {
     @BindView(R.id.rlBottomWrapper)
     RelativeLayout rlBottomWrapper;
     @BindView(R.id.ivChannelsContactProfile)
-    ImageView ivChannelsContactProfile;
+    CircleImageView ivChannelsContactProfile;
     @BindView(R.id.ivChannelsContactProfileBottom)
-    ImageView ivChannelsContactProfileBottom;
+    CircleImageView ivChannelsContactProfileBottom;
     @BindView(R.id.tvChannelsContactName)
     TextView tvChannelsContactName;
     @BindView(R.id.tvChannelsContactNameBottom)
@@ -54,6 +55,9 @@ public class ChannelsItemView extends RelativeLayout {
     TextView tvChannelsTimeOfMessage;
     @BindView(R.id.tvChannelsContactCounterText)
     TextView tvChannelsContactCounterText;
+    @BindView(R.id.ivChannelsContactCounter)
+    CircleImageView ivChannelsContactCounter;
+
 
     public ChannelsItemView(Context context) {
         super(context);
@@ -99,7 +103,14 @@ public class ChannelsItemView extends RelativeLayout {
     }
 
     void setNumberUnread(int count) {
-        tvChannelsContactCounterText.setText(String.valueOf(count));
+        if (count == 0) {
+            tvChannelsContactCounterText.setVisibility(INVISIBLE);
+            ivChannelsContactCounter.setVisibility(INVISIBLE);
+        } else {
+            tvChannelsContactCounterText.setVisibility(VISIBLE);
+            ivChannelsContactCounter.setVisibility(VISIBLE);
+            tvChannelsContactCounterText.setText(String.valueOf(count));
+        }
     }
 
     public static ChannelsItemView inflate(ViewGroup parent) {

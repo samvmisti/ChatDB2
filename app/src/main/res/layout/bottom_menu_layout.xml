@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/llWrapBottom"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorBottomOfList"
+        android:orientation="horizontal"
+        android:visibility="visible">
+
+        <RelativeLayout
+            android:id="@+id/rlKurse"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/ivKurse"
+                android:layout_width="25dp"
+                android:layout_height="24dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="6dp"
+                android:src="@drawable/kurses" />
+
+            <TextView
+                android:id="@+id/tvKurse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="32dp"
+                android:fontFamily="sans-serif"
+                android:gravity="center_horizontal"
+                android:letterSpacing="-0.02"
+                android:text="@string/kurse"
+                android:textColor="#c7c7cc"
+                android:textSize="12sp"
+                android:textStyle="normal" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rlCommunity"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/ivCommunity"
+                android:layout_width="25dp"
+                android:layout_height="24dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="6dp"
+                android:src="@drawable/cummunity" />
+
+            <TextView
+                android:id="@+id/tvCommunity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="32dp"
+                android:fontFamily="sans-serif"
+                android:gravity="center_horizontal"
+                android:letterSpacing="-0.02"
+                android:text="@string/community"
+                android:textColor="#c7c7cc"
+                android:textSize="12sp"
+                android:textStyle="normal" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rlProfile"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/ivProfile"
+                android:layout_width="25dp"
+                android:layout_height="24dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="6dp"
+                android:src="@drawable/profile" />
+
+            <TextView
+                android:id="@+id/tvProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="32dp"
+                android:fontFamily="sans-serif"
+                android:gravity="center_horizontal"
+                android:letterSpacing="-0.02"
+                android:text="@string/profile"
+                android:textColor="#c7c7cc"
+                android:textSize="12sp"
+                android:textStyle="normal" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rlHelp"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/ivHelp"
+                android:layout_width="25dp"
+                android:layout_height="24dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="6dp"
+                android:src="@drawable/help" />
+
+            <TextView
+                android:id="@+id/tvHelp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="32dp"
+                android:fontFamily="sans-serif"
+                android:gravity="center_horizontal"
+                android:letterSpacing="-0.02"
+                android:text="@string/help"
+                android:textColor="#c7c7cc"
+                android:textSize="12sp"
+                android:textStyle="normal" />
+
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>

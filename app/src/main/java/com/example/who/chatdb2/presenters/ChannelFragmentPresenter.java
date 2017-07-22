@@ -4,7 +4,6 @@ package com.example.who.chatdb2.presenters;
 import android.content.Context;
 import android.util.Log;
 
-import com.example.who.chatdb2.callback.ChatService;
 import com.example.who.chatdb2.controller.RestManager;
 import com.example.who.chatdb2.interfaces.IChannelsView;
 import com.example.who.chatdb2.pojo.Channel;
@@ -22,9 +21,9 @@ import retrofit2.Response;
  * Created by who on 21.07.2017.
  */
 
-public class ChannelActivityPresenter {
+public class ChannelFragmentPresenter {
 
-    public static final String TAG = ChannelActivityPresenter.class.getSimpleName();
+    public static final String TAG = ChannelFragmentPresenter.class.getSimpleName();
 
     private List<Channel> data = new ArrayList<>();
 
@@ -33,7 +32,7 @@ public class ChannelActivityPresenter {
     private Channel mChannel;
     private RestManager mManager;
 
-    public ChannelActivityPresenter(Context context, IChannelsView view) {
+    public ChannelFragmentPresenter(Context context, IChannelsView view) {
         this.mContext = context;
         this.view = view;
         mManager = new RestManager();
