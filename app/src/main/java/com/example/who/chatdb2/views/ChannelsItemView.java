@@ -2,15 +2,11 @@ package com.example.who.chatdb2.views;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -19,15 +15,7 @@ import com.daimajia.swipe.SwipeLayout;
 import com.example.who.chatdb2.R;
 import com.example.who.chatdb2.Utils.TimeUtils;
 import com.example.who.chatdb2.pojo.Channel;
-import com.example.who.chatdb2.pojo.User;
 import com.example.who.chatdb2.ui.MessagesActivity;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -129,7 +117,8 @@ public class ChannelsItemView extends RelativeLayout {
         if (item != null) {
             rootSwipeLayout.setShowMode(SwipeLayout.ShowMode.PullOut);
             rootSwipeLayout.addDrag(SwipeLayout.DragEdge.Left, rlBottomWrapper);
-            rootSwipeLayout.setOnClickListener(new OnClickListener() {
+            rootSwipeLayout.setOnTouchListener(null);
+            rootSwipeLayout.getSurfaceView().setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     getContext().startActivity(new Intent(getContext(), MessagesActivity.class));
