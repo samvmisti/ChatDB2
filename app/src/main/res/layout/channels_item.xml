@@ -2,6 +2,6 @@
 <com.example.who.chatdb2.views.ChannelsItemView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:clickable="false"
-    android:focusable="false"
-    android:focusableInTouchMode="false"/>
+    android:clickable="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true"/>

@@ -1,10 +1,13 @@
 package com.example.who.chatdb2.views;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
+import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -14,8 +17,10 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.daimajia.swipe.SwipeLayout;
 import com.example.who.chatdb2.R;
+import com.example.who.chatdb2.Utils.TimeUtils;
 import com.example.who.chatdb2.pojo.Channel;
 import com.example.who.chatdb2.pojo.User;
+import com.example.who.chatdb2.ui.MessagesActivity;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -57,7 +62,8 @@ public class ChannelsItemView extends RelativeLayout {
     TextView tvChannelsContactCounterText;
     @BindView(R.id.ivChannelsContactCounter)
     CircleImageView ivChannelsContactCounter;
-
+    @BindView(R.id.wrap)
+    RelativeLayout wrap;
 
     public ChannelsItemView(Context context) {
         super(context);
@@ -123,24 +129,23 @@ public class ChannelsItemView extends RelativeLayout {
         if (item != null) {
             rootSwipeLayout.setShowMode(SwipeLayout.ShowMode.PullOut);
             rootSwipeLayout.addDrag(SwipeLayout.DragEdge.Left, rlBottomWrapper);
+            rootSwipeLayout.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    getContext().startActivity(new Intent(getContext(), MessagesActivity.class));
+                }
+            });
             setUserName("" + item.getLastMessage().getSender().getFirstName() + " " + item.getLastMessage().getSender().getLastName());
             setLastMessage("" + item.getLastMessage().getText());
             setNumberUnread(item.getUnreadMessagesCount());
             setUserImage(item.getLastMessage().getSender().getPhoto());
             String d = item.getLastMessage().getCreateDate();
-            setTimeOfMessage(getNormalizedTime(d));
+            setTimeOfMessage(TimeUtils.getNormalizedTime(d));
         }
     }
 
-    private String getNormalizedTime(String oldTime) {
-        SimpleDateFormat fromUser = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-        SimpleDateFormat myFormat = new SimpleDateFormat("HH:mm");
-        String reformattedStr = "";
-        try {
-            reformattedStr = myFormat.format(fromUser.parse(oldTime));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return reformattedStr;
+    @Override
+    public void setOnClickListener(@Nullable OnClickListener l) {
+        super.setOnClickListener(l);
     }
 }

@@ -7,7 +7,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import com.example.who.chatdb2.pojo.Channel;
+import com.example.who.chatdb2.pojo.Message;
 import com.example.who.chatdb2.views.ChannelsItemView;
+import com.example.who.chatdb2.views.MessagesItemView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,10 +21,10 @@ import java.util.List;
 public class MessagesListAdapter extends BaseAdapter {
 
     private Context context;
-    private List<Channel> data = new ArrayList<>();
+    private List<Message> data = new ArrayList<>();
     private LayoutInflater mInflater;
 
-    public MessagesListAdapter(Context context, List<Channel> data) {
+    public MessagesListAdapter(Context context, List<Message> data) {
         this.context = context;
         this.data = data;
     }
@@ -33,7 +35,7 @@ public class MessagesListAdapter extends BaseAdapter {
     }
 
     @Override
-    public Channel getItem(int position) {
+    public Message getItem(int position) {
         return data.get(position);
     }
 
@@ -44,18 +46,18 @@ public class MessagesListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ChannelsItemView itemView = (ChannelsItemView) convertView;
+        MessagesItemView itemView = (MessagesItemView) convertView;
         if (itemView == null) {
-            itemView = ChannelsItemView.inflate(parent);
+            itemView = MessagesItemView.inflate(parent);
         }
         updateView(itemView, position);
 
         return itemView;
     }
 
-    private void updateView(ChannelsItemView itemView, int position) {
+    private void updateView(MessagesItemView itemView, int position) {
         itemView.setOnClickListener(null);
-        Channel model = getItem(position);
+        Message model = getItem(position);
         itemView.setItem(model);
 
     }

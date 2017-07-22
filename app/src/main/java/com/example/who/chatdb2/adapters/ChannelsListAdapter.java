@@ -1,7 +1,7 @@
 package com.example.who.chatdb2.adapters;
 
 import android.content.Context;
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -9,7 +9,6 @@ import android.widget.BaseAdapter;
 import com.example.who.chatdb2.pojo.Channel;
 import com.example.who.chatdb2.views.ChannelsItemView;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +20,6 @@ public class ChannelsListAdapter extends BaseAdapter {
 
     private Context context;
     private List<Channel> data = new ArrayList<>();
-    private LayoutInflater mInflater;
 
     public ChannelsListAdapter(Context context, List<Channel> data) {
         this.context = context;
@@ -50,14 +48,11 @@ public class ChannelsListAdapter extends BaseAdapter {
             itemView = ChannelsItemView.inflate(parent);
         }
         updateView(itemView, position);
-
         return itemView;
     }
 
     private void updateView(ChannelsItemView itemView, int position) {
-        itemView.setOnClickListener(null);
         Channel model = getItem(position);
         itemView.setItem(model);
-
     }
 }

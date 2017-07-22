@@ -1,13 +1,18 @@
 package com.example.who.chatdb2.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.ListFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import com.example.who.chatdb2.R;
 import com.example.who.chatdb2.adapters.ChannelsListAdapter;
@@ -17,19 +22,20 @@ import com.example.who.chatdb2.presenters.ChannelFragmentPresenter;
 
 import java.util.List;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
  * Created by who on 21.07.2017.
  */
 
-public class ChannelsFragment extends Fragment implements IChannelsView {
+public class ChannelsFragment extends Fragment implements IChannelsView{
 
-//    @BindView(R.id.lvChannels)
     ListView lvChannels;
 
     private ChannelsListAdapter adapter;
     private ChannelFragmentPresenter presenter;
+
 
     public ChannelsFragment() {
     }
@@ -37,14 +43,9 @@ public class ChannelsFragment extends Fragment implements IChannelsView {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.channels_fragment_layout, container, false);
-        lvChannels = (ListView) rootView.findViewById(R.id.lvChannels);
-        return rootView;
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         ButterKnife.bind(getActivity());
+        lvChannels = (ListView) rootView.findViewById(R.id.list);
+        return rootView;
     }
 
     @Override
@@ -65,7 +66,7 @@ public class ChannelsFragment extends Fragment implements IChannelsView {
 
     @Override
     public void setDataToAdapter(List<Channel> data) {
-        adapter = new ChannelsListAdapter(getContext(), data);
+        adapter = new ChannelsListAdapter(getActivity(), data);
         lvChannels.setAdapter(adapter);
     }
 }
