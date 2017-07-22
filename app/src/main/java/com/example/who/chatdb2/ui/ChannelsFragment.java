@@ -2,6 +2,7 @@ package com.example.who.chatdb2.ui;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,7 +43,7 @@ public class ChannelsFragment extends Fragment implements IChannelsView{
     @Override
     public void onResume() {
         super.onResume();
-        presenter = new ChannelFragmentPresenter(getActivity(), this);
+        presenter = new ChannelFragmentPresenter(getContext(), this);
     }
 
     @Override
@@ -57,7 +58,7 @@ public class ChannelsFragment extends Fragment implements IChannelsView{
 
     @Override
     public void setDataToAdapter(List<Channel> data) {
-        adapter = new ChannelsListAdapter(getActivity(), data);
+        adapter = new ChannelsListAdapter(getContext(), data);
         lvChannels.setAdapter(adapter);
     }
 }
