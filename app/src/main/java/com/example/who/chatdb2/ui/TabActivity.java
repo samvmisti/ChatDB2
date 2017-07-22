@@ -11,9 +11,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.LinearLayout;
 
 import com.example.who.chatdb2.R;
+import com.example.who.chatdb2.presenters.TabActivityPresenter;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,17 +26,18 @@ import java.util.List;
  * Created by who on 22.07.2017.
  */
 
-public class TabActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener{
+public class TabActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
 
     private Toolbar toolbar;
     public TabLayout tabLayout;
     private ViewPager viewPager;
+    private TabActivityPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tab_activity);
-
+        presenter = new TabActivityPresenter(this);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -44,6 +49,7 @@ public class TabActivity extends AppCompatActivity implements TabLayout.OnTabSel
         tabLayout = (TabLayout) findViewById(R.id.tlTabActivity);
         tabLayout.setTabTextColors(getColor(R.color.colorTextUnelectedTab), getColor(R.color.colorTextSelectedTab));
         tabLayout.setupWithViewPager(viewPager);
+        presenter.setBadgeCountLiveChat(15, tabLayout);
     }
 
     private void setupViewPager(ViewPager viewPager) {
@@ -106,5 +112,22 @@ public class TabActivity extends AppCompatActivity implements TabLayout.OnTabSel
         public CharSequence getPageTitle(int position) {
             return mFragmentTitleList.get(position);
         }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(Integer count) {
+        presenter.setBadgeCountChat(count, tabLayout);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
     }
 }

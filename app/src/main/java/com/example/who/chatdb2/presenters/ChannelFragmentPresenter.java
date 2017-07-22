@@ -9,6 +9,8 @@ import com.example.who.chatdb2.interfaces.IChannelsView;
 import com.example.who.chatdb2.pojo.Channel;
 import com.example.who.chatdb2.pojo.Channels;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -47,6 +49,11 @@ public class ChannelFragmentPresenter {
             @Override
             public void onResponse(Call<Channels> call, Response<Channels> response) {
                 data = response.body().getChannels();
+                int count = 0;
+                for(Channel ch:data){
+                   count=count+ch.getUnreadMessagesCount();
+                }
+                EventBus.getDefault().post(count);
                 view.setDataToAdapter(data);
             }
 
@@ -55,16 +62,6 @@ public class ChannelFragmentPresenter {
                 Log.e(TAG, t.getLocalizedMessage());
             }
         });
-
-
-//        data.add(0, new DayOfWeekModel(MONDAY));
-//        data.add(1, new DayOfWeekModel(TUESDAY));
-//        data.add(2, new DayOfWeekModel(WEDNESDAY));
-//        data.add(3, new DayOfWeekModel(THURSDAY));
-//        data.add(4, new DayOfWeekModel(FRIDAY));
-//        data.add(5, new DayOfWeekModel(SATURDAY));
-//        data.add(6, new DayOfWeekModel(SUNDAY));
-
     }
 
 }

@@ -9,5 +9,6 @@
     <color name="colorTransparent">#00ffffff</color>
     <color name="colorTextSelectedTab">#4a90e2</color>
     <color name="colorTextUnelectedTab">#ffffff</color>
+    <color name="colorBadgeGreyFont">#1d395b</color>
 
 </resources>
