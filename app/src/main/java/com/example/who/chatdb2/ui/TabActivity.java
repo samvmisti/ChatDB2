@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
 
 import com.example.who.chatdb2.R;
 
@@ -21,10 +22,10 @@ import java.util.List;
  * Created by who on 22.07.2017.
  */
 
-public class TabActivity extends AppCompatActivity {
+public class TabActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener{
 
     private Toolbar toolbar;
-    private TabLayout tabLayout;
+    public TabLayout tabLayout;
     private ViewPager viewPager;
 
     @Override
@@ -37,10 +38,11 @@ public class TabActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        viewPager = (ViewPager) findViewById(R.id.vpTabActivity);
         setupViewPager(viewPager);
 
-        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout = (TabLayout) findViewById(R.id.tlTabActivity);
+        tabLayout.setTabTextColors(getColor(R.color.colorTextUnelectedTab), getColor(R.color.colorTextSelectedTab));
         tabLayout.setupWithViewPager(viewPager);
     }
 
@@ -62,6 +64,18 @@ public class TabActivity extends AppCompatActivity {
         Intent i = new Intent(TabActivity.this, EmptyActivity.class);
         startActivity(i);
         return true;
+    }
+
+    @Override
+    public void onTabSelected(TabLayout.Tab tab) {
+    }
+
+    @Override
+    public void onTabUnselected(TabLayout.Tab tab) {
+    }
+
+    @Override
+    public void onTabReselected(TabLayout.Tab tab) {
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
@@ -86,6 +100,7 @@ public class TabActivity extends AppCompatActivity {
             mFragmentList.add(fragment);
             mFragmentTitleList.add(title);
         }
+
 
         @Override
         public CharSequence getPageTitle(int position) {

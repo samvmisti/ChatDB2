@@ -6,5 +6,8 @@
     <color name="colorCounterChannels">#50c3e3</color>
     <color name="colorRemoveItem">#4a90e2</color>
     <color name="colorBottomOfList">#4a90e2</color>
+    <color name="colorTransparent">#00ffffff</color>
+    <color name="colorTextSelectedTab">#4a90e2</color>
+    <color name="colorTextUnelectedTab">#ffffff</color>
 
 </resources>
