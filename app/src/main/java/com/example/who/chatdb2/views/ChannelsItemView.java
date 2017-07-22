@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.daimajia.swipe.SwipeLayout;
 import com.example.who.chatdb2.R;
 import com.example.who.chatdb2.pojo.Channel;
 import com.example.who.chatdb2.pojo.User;
@@ -33,12 +34,22 @@ public class ChannelsItemView extends RelativeLayout {
 
     public static final String TAG = ChannelsItemView.class.getSimpleName();
 
+    @BindView(R.id.rootSwipeLayout)
+    SwipeLayout rootSwipeLayout;
+    @BindView(R.id.rlBottomWrapper)
+    RelativeLayout rlBottomWrapper;
     @BindView(R.id.ivChannelsContactProfile)
     ImageView ivChannelsContactProfile;
+    @BindView(R.id.ivChannelsContactProfileBottom)
+    ImageView ivChannelsContactProfileBottom;
     @BindView(R.id.tvChannelsContactName)
     TextView tvChannelsContactName;
+    @BindView(R.id.tvChannelsContactNameBottom)
+    TextView tvChannelsContactNameBottom;
     @BindView(R.id.tvChannelsContactLastMessage)
     TextView tvChannelsContactLastMessage;
+    @BindView(R.id.tvChannelsContactLastMessageBottom)
+    TextView tvChannelsContactLastMessageBottom;
     @BindView(R.id.tvChannelsTimeOfMessage)
     TextView tvChannelsTimeOfMessage;
     @BindView(R.id.tvChannelsContactCounterText)
@@ -68,14 +79,19 @@ public class ChannelsItemView extends RelativeLayout {
         Glide.with(getContext())
                 .load(src)
                 .into(ivChannelsContactProfile);
+        Glide.with(getContext())
+                .load(src)
+                .into(ivChannelsContactProfileBottom);
     }
 
     void setUserName(String name) {
         tvChannelsContactName.setText(name);
+        tvChannelsContactNameBottom.setText(name);
     }
 
     void setLastMessage(String message) {
         tvChannelsContactLastMessage.setText(message);
+        tvChannelsContactLastMessageBottom.setText(message);
     }
 
     void setTimeOfMessage(String time) {
@@ -94,6 +110,8 @@ public class ChannelsItemView extends RelativeLayout {
 
     public void setItem(Channel item) {
         if (item != null) {
+            rootSwipeLayout.setShowMode(SwipeLayout.ShowMode.PullOut);
+            rootSwipeLayout.addDrag(SwipeLayout.DragEdge.Left, rlBottomWrapper);
             setUserName("" + item.getLastMessage().getSender().getFirstName() + " " + item.getLastMessage().getSender().getLastName());
             setLastMessage("" + item.getLastMessage().getText());
             setNumberUnread(item.getUnreadMessagesCount());

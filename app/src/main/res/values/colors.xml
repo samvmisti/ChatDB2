@@ -4,5 +4,6 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorCounterChannels">#50c3e3</color>
+    <color name="colorRemoveItem">#4a90e2</color>
 
 </resources>

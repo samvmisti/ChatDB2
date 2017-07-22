@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ChatDB2</string>
+    <string name="remove">Remove</string>
 </resources>
