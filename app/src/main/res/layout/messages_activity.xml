@@ -21,10 +21,9 @@
         android:id="@+id/lvMessages"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="34dp"
         android:layout_marginTop="?attr/actionBarSize"
         android:scrollbars="none"
-        android:dividerHeight="20dip"
+        android:dividerHeight="0dip"
         android:divider="@null"/>
 
 </android.support.design.widget.CoordinatorLayout>

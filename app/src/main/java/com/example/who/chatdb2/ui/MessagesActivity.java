@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -77,6 +79,23 @@ public class MessagesActivity extends AppCompatActivity implements IMessagesView
     protected void onResume() {
         super.onResume();
         presenter = new MessagesActivityPresenter(getApplicationContext(), this, senderID);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int itemId = item.getItemId();
+        switch (itemId) {
+            case android.R.id.home:
+                startActivity(new Intent(MessagesActivity.this, TabActivity.class));
+                finish();
+                break;
+
+        } return true;
     }
 
     @Override
