@@ -15,7 +15,8 @@
         android:layout_marginEnd="21dp"
         android:layout_marginLeft="26dp"
         android:layout_marginRight="21dp"
-        android:layout_marginStart="26dp" />
+        android:layout_marginStart="26dp"
+        android:src="@drawable/circle_counter"/>
 
     <RelativeLayout
         android:id="@+id/rlMessageFromSender"
@@ -25,7 +26,9 @@
         android:layout_marginRight="25dp"
         android:background="@color/colorTransparent"
         android:layout_marginTop="0dp"
-        android:layout_marginBottom="0dp">
+        android:layout_marginBottom="0dp"
+        android:layout_toEndOf="@id/ivMessagesContactProfile"
+        android:layout_toRightOf="@id/ivMessagesContactProfile">
 
         <ImageView
             android:id="@+id/ivMessageFromSenderFont"
@@ -39,7 +42,10 @@
             android:id="@+id/tvMessageFromSender"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="17dp"
+            android:layout_marginBottom="21dp"
             android:fontFamily="sans-serif"
             android:letterSpacing="-0.03"
             android:textColor="#4a4a4a"
@@ -78,7 +84,10 @@
             android:textStyle="normal"
             android:textColor="#ffffff"
             android:letterSpacing="-0.03"
-            android:layout_centerInParent="true"/>
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="17dp"
+            android:layout_marginBottom="21dp"/>
 
         <TextView
             android:id="@+id/tvMessageTime"

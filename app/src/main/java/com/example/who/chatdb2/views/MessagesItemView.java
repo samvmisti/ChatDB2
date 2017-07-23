@@ -3,6 +3,7 @@ package com.example.who.chatdb2.views;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -52,10 +53,16 @@ public class MessagesItemView extends RelativeLayout {
         init();
     }
 
+    void setItemInvisible(View v){
+        v.setVisibility(INVISIBLE);
+    }
+
     private void init() {
         inflate(getContext(), R.layout.messages_item_view, this);
         ButterKnife.bind(this);
-        rlMessageFromMe.setVisibility(INVISIBLE);
+        setItemInvisible(rlMessageFromMe);
+        setItemInvisible(tvMessageFromMe);
+        setItemInvisible(tvMessageTime);
     }
 
     void setMessageFromSender(String message){
