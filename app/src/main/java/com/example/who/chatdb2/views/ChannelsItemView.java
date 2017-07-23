@@ -4,9 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -107,11 +105,11 @@ public class ChannelsItemView extends RelativeLayout {
         }
     }
 
-    public static ChannelsItemView inflate(ViewGroup parent) {
-        ChannelsItemView itemView = (ChannelsItemView) LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.channels_item, parent, false);
-        return itemView;
-    }
+//    public static ChannelsItemView inflate(ViewGroup parent) {
+//        ChannelsItemView itemView = (ChannelsItemView) LayoutInflater.from(parent.getContext())
+//                .inflate(R.layout.channels_item, parent, false);
+//        return itemView;
+//    }
 
     public void setItem(Channel item) {
         if (item != null) {

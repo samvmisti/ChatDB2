@@ -2,6 +2,7 @@ package com.example.who.chatdb2.ui;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,7 +24,7 @@ import butterknife.ButterKnife;
 
 public class ChannelsFragment extends Fragment implements IChannelsView{
 
-    ListView lvChannels;
+    RecyclerView rvChannelsFragment;
 
     private ChannelsListAdapter adapter;
     private ChannelFragmentPresenter presenter;
@@ -34,11 +35,17 @@ public class ChannelsFragment extends Fragment implements IChannelsView{
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.channels_fragment_layout, container, false);
-        ButterKnife.bind(getActivity());
-        lvChannels = (ListView) rootView.findViewById(R.id.list);
-        return rootView;
+        rvChannelsFragment = (RecyclerView) inflater.inflate(
+                R.layout.channels_fragment_layout, container, false);
+        rvChannelsFragment.setLayoutManager(new LinearLayoutManager(getActivity()));
+        return rvChannelsFragment;
+//        View rootView = inflater.inflate(R.layout.channels_fragment_layout, container, false);
+//        ButterKnife.bind(getActivity());
+//        lvChannels = (ListView) rootView.findViewById(R.id.list);
+//        return rootView;
     }
+
+
 
     @Override
     public void onResume() {
@@ -59,6 +66,6 @@ public class ChannelsFragment extends Fragment implements IChannelsView{
     @Override
     public void setDataToAdapter(List<Channel> data) {
         adapter = new ChannelsListAdapter(getContext(), data);
-        lvChannels.setAdapter(adapter);
+        rvChannelsFragment.setAdapter(adapter);
     }
 }
