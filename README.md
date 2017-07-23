@@ -1,7 +1,7 @@
 # ChatDB2
 ## Android developer test job for DB2 Limited.
 Here is the screenshot of a main screen.
-![Alt text](/screenshot.png "Channels screen")
+![Alt text](/Screenshot.png "Channels screen")
 ## Test job description:
 Please create 2 fully working screens.
 [API first screen](https://iostest.db2dev.com/api/chat/channels/) and  
