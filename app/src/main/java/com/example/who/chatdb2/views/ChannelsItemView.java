@@ -18,6 +18,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 
+import static com.example.who.chatdb2.global.Constants.SENDER_ID;
+import static com.example.who.chatdb2.global.Constants.SENDER_NAME;
+import static com.example.who.chatdb2.global.Constants.SENDER_PHOTO;
+
 /**
  * Created by who on 21.07.2017.
  */
@@ -111,24 +115,28 @@ public class ChannelsItemView extends RelativeLayout {
 //        return itemView;
 //    }
 
-    public void setItem(final Channel item) {
+    public void setItem(Channel item) {
         if (item != null) {
+            final int senderID = item.getLastMessage().getSender().getId();
+            final String senderName = "" + item.getLastMessage().getSender().getFirstName() + " " + item.getLastMessage().getSender().getLastName();
+            final String senderPhoto = item.getLastMessage().getSender().getPhoto();
             rootSwipeLayout.setShowMode(SwipeLayout.ShowMode.PullOut);
             rootSwipeLayout.addDrag(SwipeLayout.DragEdge.Left, rlBottomWrapper);
             rootSwipeLayout.setOnTouchListener(null);
             rootSwipeLayout.getSurfaceView().setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    int senderID = item.getLastMessage().getSender().getId();
                     Intent i = new Intent(getContext(), MessagesActivity.class);
-                    i.putExtra("senderID", senderID);
+                    i.putExtra(SENDER_ID, senderID);
+                    i.putExtra(SENDER_NAME, senderName);
+                    i.putExtra(SENDER_PHOTO, senderPhoto);
                     getContext().startActivity(i);
                 }
             });
-            setUserName("" + item.getLastMessage().getSender().getFirstName() + " " + item.getLastMessage().getSender().getLastName());
+            setUserName(senderName);
             setLastMessage("" + item.getLastMessage().getText());
             setNumberUnread(item.getUnreadMessagesCount());
-            setUserImage(item.getLastMessage().getSender().getPhoto());
+            setUserImage(senderPhoto);
             String d = item.getLastMessage().getCreateDate();
             setTimeOfMessage(TimeUtils.getNormalizedTime(d));
         }

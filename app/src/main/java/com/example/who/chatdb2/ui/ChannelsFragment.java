@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 
 import com.example.who.chatdb2.R;
 import com.example.who.chatdb2.adapters.ChannelsListAdapter;
@@ -16,13 +15,12 @@ import com.example.who.chatdb2.pojo.Channel;
 import com.example.who.chatdb2.presenters.ChannelFragmentPresenter;
 
 import java.util.List;
-import butterknife.ButterKnife;
 
 /**
  * Created by who on 21.07.2017.
  */
 
-public class ChannelsFragment extends Fragment implements IChannelsView{
+public class ChannelsFragment extends Fragment implements IChannelsView {
 
     RecyclerView rvChannelsFragment;
 
@@ -39,13 +37,7 @@ public class ChannelsFragment extends Fragment implements IChannelsView{
                 R.layout.channels_fragment_layout, container, false);
         rvChannelsFragment.setLayoutManager(new LinearLayoutManager(getActivity()));
         return rvChannelsFragment;
-//        View rootView = inflater.inflate(R.layout.channels_fragment_layout, container, false);
-//        ButterKnife.bind(getActivity());
-//        lvChannels = (ListView) rootView.findViewById(R.id.list);
-//        return rootView;
     }
-
-
 
     @Override
     public void onResume() {

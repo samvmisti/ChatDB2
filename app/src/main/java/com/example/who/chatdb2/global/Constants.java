@@ -5,5 +5,7 @@ package com.example.who.chatdb2.global;
  */
 
 public class Constants {
-
+    public static final String SENDER_ID = "senderID";
+    public static final String SENDER_NAME = "senderName";
+    public static final String SENDER_PHOTO = "senderPhoto";
 }

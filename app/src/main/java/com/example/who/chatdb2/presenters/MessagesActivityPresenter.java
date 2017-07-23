@@ -31,10 +31,12 @@ public class MessagesActivityPresenter {
     private IMessagesView view;
     private Channel mChannel;
     private RestManager mManager;
+    private int senderID;
 
-    public MessagesActivityPresenter(Context context, IMessagesView view) {
+    public MessagesActivityPresenter(Context context, IMessagesView view, int senderID) {
         this.mContext = context;
         this.view = view;
+        this.senderID = senderID;
         mManager = new RestManager();
         initList();
     }
@@ -46,8 +48,14 @@ public class MessagesActivityPresenter {
         listCall.enqueue(new Callback<Messages>() {
             @Override
             public void onResponse(Call<Messages> call, Response<Messages> response) {
-                data = response.body().getMessages();
-                view.setDataToAdapter(data);
+                if (response.body() != null) {
+                    data = response.body().getMessages();
+                    List<Message> sortedData = new ArrayList<>();
+                    for (Message mes : data) {
+                        if (mes.getSender().getId() == senderID) sortedData.add(mes);
+                    }
+                    view.setDataToAdapter(sortedData);
+                }
             }
 
             @Override

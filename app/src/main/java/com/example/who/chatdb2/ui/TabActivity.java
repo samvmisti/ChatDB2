@@ -65,9 +65,15 @@ public class TabActivity extends AppCompatActivity implements TabLayout.OnTabSel
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Intent i = new Intent(TabActivity.this, EmptyActivity.class);
-        startActivity(i);
-        return true;
+        int itemId = item.getItemId();
+        Intent intent = null;
+        switch (itemId) {
+            case android.R.id.home:
+                intent = new Intent(TabActivity.this, EmptyActivityWithButton.class);
+                startActivity(intent);
+                break;
+
+        } return true;
     }
 
     @Override
@@ -82,11 +88,16 @@ public class TabActivity extends AppCompatActivity implements TabLayout.OnTabSel
     public void onTabReselected(TabLayout.Tab tab) {
     }
 
-    class ViewPagerAdapter extends FragmentPagerAdapter {
+    public void goToEmptyActivity(MenuItem item) {
+        Intent intent = new Intent(TabActivity.this, EmptyActivity.class);
+        startActivity(intent);
+    }
+
+    private class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();
 
-        public ViewPagerAdapter(FragmentManager manager) {
+        ViewPagerAdapter(FragmentManager manager) {
             super(manager);
         }
 
@@ -100,7 +111,7 @@ public class TabActivity extends AppCompatActivity implements TabLayout.OnTabSel
             return mFragmentList.size();
         }
 
-        public void addFragment(Fragment fragment, String title) {
+        void addFragment(Fragment fragment, String title) {
             mFragmentList.add(fragment);
             mFragmentTitleList.add(title);
         }
