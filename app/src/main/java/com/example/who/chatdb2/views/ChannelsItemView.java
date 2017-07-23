@@ -111,7 +111,7 @@ public class ChannelsItemView extends RelativeLayout {
 //        return itemView;
 //    }
 
-    public void setItem(Channel item) {
+    public void setItem(final Channel item) {
         if (item != null) {
             rootSwipeLayout.setShowMode(SwipeLayout.ShowMode.PullOut);
             rootSwipeLayout.addDrag(SwipeLayout.DragEdge.Left, rlBottomWrapper);
@@ -119,7 +119,10 @@ public class ChannelsItemView extends RelativeLayout {
             rootSwipeLayout.getSurfaceView().setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    getContext().startActivity(new Intent(getContext(), MessagesActivity.class));
+                    int senderID = item.getLastMessage().getSender().getId();
+                    Intent i = new Intent(getContext(), MessagesActivity.class);
+                    i.putExtra("senderID", senderID);
+                    getContext().startActivity(i);
                 }
             });
             setUserName("" + item.getLastMessage().getSender().getFirstName() + " " + item.getLastMessage().getSender().getLastName());

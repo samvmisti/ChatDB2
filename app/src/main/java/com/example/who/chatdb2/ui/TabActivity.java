@@ -40,9 +40,7 @@ public class TabActivity extends AppCompatActivity implements TabLayout.OnTabSel
         presenter = new TabActivityPresenter(this);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         viewPager = (ViewPager) findViewById(R.id.vpTabActivity);
         setupViewPager(viewPager);
 

@@ -2,7 +2,9 @@ package com.example.who.chatdb2.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.widget.ListView;
 
 import com.example.who.chatdb2.R;
@@ -27,11 +29,14 @@ public class MessagesActivity extends AppCompatActivity implements IMessagesView
 
     private MessagesListAdapter adapter;
     private MessagesActivityPresenter presenter;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.messages_activity);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         ButterKnife.bind(this);
     }
 
