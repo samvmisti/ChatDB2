@@ -14,7 +14,7 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|enterAlways"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
     </android.support.design.widget.AppBarLayout>
 
     <ListView
@@ -22,8 +22,39 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="?attr/actionBarSize"
-        android:scrollbars="none"
+        android:divider="@null"
         android:dividerHeight="0dip"
-        android:divider="@null"/>
+        android:scrollbars="none"
+        android:layout_marginBottom="44dp"
+        android:paddingBottom="34dp"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom">
+    <RelativeLayout
+        android:id="@+id/rlSendMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorTextUnelectedTab">
+
+        <EditText
+            android:id="@+id/etNewMessage"
+            android:layout_width="match_parent"
+            android:hint="@string/message"
+            android:layout_height="44dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="23.6dp"
+            android:layout_marginEnd="23.6dp"
+            android:src="@drawable/camera"/>
+    </RelativeLayout>
+    </FrameLayout>
 
 </android.support.design.widget.CoordinatorLayout>
