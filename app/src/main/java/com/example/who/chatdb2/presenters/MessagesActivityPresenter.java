@@ -1,7 +1,11 @@
 package com.example.who.chatdb2.presenters;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.who.chatdb2.controller.RestManager;
 import com.example.who.chatdb2.interfaces.IMessagesView;
@@ -17,6 +21,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.example.who.chatdb2.global.Constants.CHOOSE_OPEN_PHOTO;
+
 /**
  * Created by who on 21.07.2017.
  */
@@ -26,7 +32,7 @@ public class MessagesActivityPresenter {
     public static final String TAG = ChannelFragmentPresenter.class.getSimpleName();
 
     private List<Message> data = new ArrayList<>();
-
+    private List<Message> sortedData = new ArrayList<>();
     private Context mContext;
     private IMessagesView view;
     private Channel mChannel;
@@ -50,7 +56,7 @@ public class MessagesActivityPresenter {
             public void onResponse(Call<Messages> call, Response<Messages> response) {
                 if (response.body() != null) {
                     data = response.body().getMessages();
-                    List<Message> sortedData = new ArrayList<>();
+                    sortedData = new ArrayList<>();
                     for (Message mes : data) {
                         if (mes.getSender().getId() == senderID) sortedData.add(mes);
                     }
@@ -65,4 +71,27 @@ public class MessagesActivityPresenter {
         });
     }
 
+    public void takePhotoFromSD() {
+        String strManufacturer = android.os.Build.MANUFACTURER;
+        Intent intent;
+        if (strManufacturer.equals("samsung")) {
+            intent = new Intent("com.sec.android.app.myfiles.PICK_DATA");
+            intent.putExtra("CONTENT_TYPE", "image/*");
+            intent.addCategory(Intent.CATEGORY_DEFAULT);
+        } else {
+            intent = new Intent(Intent.ACTION_GET_CONTENT);
+            intent.setType("image/*");
+            intent.addCategory(Intent.CATEGORY_OPENABLE);
+        }
+        view.takePhoto(intent, CHOOSE_OPEN_PHOTO);
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == CHOOSE_OPEN_PHOTO) {
+            if (resultCode == Activity.RESULT_OK) {
+                Uri imageUri = data.getData();
+                Toast.makeText(mContext, "Your image URI \n" + imageUri.toString(), Toast.LENGTH_LONG).show();
+            }
+        }
+    }
 }

@@ -1,5 +1,7 @@
 package com.example.who.chatdb2.interfaces;
 
+import android.content.Intent;
+
 import com.example.who.chatdb2.pojo.Channel;
 import com.example.who.chatdb2.pojo.Message;
 
@@ -15,4 +17,6 @@ public interface IMessagesView {
     void onBack();
 
     void setDataToAdapter(List<Message> data);
+
+    void takePhoto(Intent intent, int chooseOpenPhoto);
 }

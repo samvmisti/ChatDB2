@@ -112,4 +112,18 @@ public class MessagesActivity extends AppCompatActivity implements IMessagesView
         adapter = new MessagesListAdapter(this, data);
         lvMessages.setAdapter(adapter);
     }
+
+    @Override
+    public void takePhoto(Intent intent, int i) {
+        startActivityForResult(intent, i);
+    }
+
+    public void loadImageUrl(View view) {
+        presenter.takePhotoFromSD();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        presenter.onActivityResult(requestCode, resultCode, data);
+    }
 }
