@@ -22,29 +22,31 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by who on 22.07.2017.
  */
 
 public class TabActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
-
-    private Toolbar toolbar;
+    @BindView(R.id.toolbar)
+    public Toolbar toolbar;
+    @BindView(R.id.tlTabActivity)
     public TabLayout tabLayout;
-    private ViewPager viewPager;
+    @BindView(R.id.vpTabActivity)
+    public ViewPager viewPager;
     private TabActivityPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tab_activity);
+        ButterKnife.bind(this);
         presenter = new TabActivityPresenter(this);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        viewPager = (ViewPager) findViewById(R.id.vpTabActivity);
         setupViewPager(viewPager);
-
-        tabLayout = (TabLayout) findViewById(R.id.tlTabActivity);
         tabLayout.setTabTextColors(getColor(R.color.colorTextUnelectedTab), getColor(R.color.colorTextSelectedTab));
         tabLayout.setupWithViewPager(viewPager);
         presenter.setBadgeCountLiveChat(15, tabLayout);
@@ -72,7 +74,6 @@ public class TabActivity extends AppCompatActivity implements TabLayout.OnTabSel
                 intent = new Intent(TabActivity.this, EmptyActivityWithButton.class);
                 startActivity(intent);
                 break;
-
         } return true;
     }
 

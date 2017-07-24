@@ -3,7 +3,6 @@ package com.example.who.chatdb2.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -36,11 +35,13 @@ import static com.example.who.chatdb2.global.Constants.SENDER_PHOTO;
 public class MessagesActivity extends AppCompatActivity implements IMessagesView {
 
     @BindView(R.id.lvMessages)
-    ListView lvMessages;
+    public ListView lvMessages;
+    @BindView(R.id.toolbar)
+    public Toolbar toolbar;
+
 
     private MessagesListAdapter adapter;
     private MessagesActivityPresenter presenter;
-    private Toolbar toolbar;
     private int senderID;
     private String senderName;
     private String senderPhoto;
@@ -49,18 +50,17 @@ public class MessagesActivity extends AppCompatActivity implements IMessagesView
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.messages_activity);
+        ButterKnife.bind(this);
         getIntentExtras();
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setCurrentToolbar();
-        ButterKnife.bind(this);
     }
 
     private void getIntentExtras() {
         Intent i = getIntent();
-        if(i.hasExtra(SENDER_ID))senderID = i.getIntExtra(SENDER_ID, 0);
-        if(i.hasExtra(SENDER_NAME))senderName = i.getStringExtra(SENDER_NAME);
-        if(i.hasExtra(SENDER_PHOTO))senderPhoto = i.getStringExtra(SENDER_PHOTO);
+        if (i.hasExtra(SENDER_ID)) senderID = i.getIntExtra(SENDER_ID, 0);
+        if (i.hasExtra(SENDER_NAME)) senderName = i.getStringExtra(SENDER_NAME);
+        if (i.hasExtra(SENDER_PHOTO)) senderPhoto = i.getStringExtra(SENDER_PHOTO);
     }
 
     private void setCurrentToolbar() {
@@ -69,8 +69,8 @@ public class MessagesActivity extends AppCompatActivity implements IMessagesView
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         LayoutInflater inflater = LayoutInflater.from(this);
         View v = inflater.inflate(R.layout.titleview, null);
-        TextView title = (TextView)v.findViewById(R.id.tvCustomTitle);
-        if(!TextUtils.isEmpty(senderName))title.setText(senderName);
+        TextView title = (TextView) v.findViewById(R.id.tvCustomTitle);
+        if (!TextUtils.isEmpty(senderName)) title.setText(senderName);
         getSupportActionBar().setCustomView(v);
 
     }
@@ -95,7 +95,8 @@ public class MessagesActivity extends AppCompatActivity implements IMessagesView
                 finish();
                 break;
 
-        } return true;
+        }
+        return true;
     }
 
     @Override

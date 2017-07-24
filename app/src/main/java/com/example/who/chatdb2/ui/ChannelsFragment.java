@@ -33,8 +33,7 @@ public class ChannelsFragment extends Fragment implements IChannelsView {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        rvChannelsFragment = (RecyclerView) inflater.inflate(
-                R.layout.channels_fragment_layout, container, false);
+        rvChannelsFragment = (RecyclerView) inflater.inflate(R.layout.channels_fragment_layout, container, false);
         rvChannelsFragment.setLayoutManager(new LinearLayoutManager(getActivity()));
         return rvChannelsFragment;
     }

@@ -9,6 +9,6 @@ public class ChatApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-       //here init something
+        //here init some libs
     }
 }

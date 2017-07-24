@@ -25,7 +25,7 @@ import retrofit2.Response;
 
 public class ChannelFragmentPresenter {
 
-    public static final String TAG = ChannelFragmentPresenter.class.getSimpleName();
+    private static final String TAG = ChannelFragmentPresenter.class.getSimpleName();
 
     private List<Channel> data = new ArrayList<>();
 
@@ -48,13 +48,15 @@ public class ChannelFragmentPresenter {
         listCall.enqueue(new Callback<Channels>() {
             @Override
             public void onResponse(Call<Channels> call, Response<Channels> response) {
-                data = response.body().getChannels();
-                int count = 0;
-                for(Channel ch:data){
-                   count=count+ch.getUnreadMessagesCount();
+                if (response.body() != null) {
+                    data = response.body().getChannels();
+                    int count = 0;
+                    for (Channel ch : data) {
+                        count = count + ch.getUnreadMessagesCount();
+                    }
+                    EventBus.getDefault().post(count);
+                    view.setDataToAdapter(data);
                 }
-                EventBus.getDefault().post(count);
-                view.setDataToAdapter(data);
             }
 
             @Override
